@@ -1,6 +1,5 @@
-rom flask import Flask, request, jsonify, g
-from werkzeug.security import generate_password_hash, check_password_hash
-import sqlite3
+rom flask import Flask, request, jsonify
+import sqlite
 import logging
 
 app = Flask(__name__)
