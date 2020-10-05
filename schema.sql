@@ -53,17 +53,18 @@ CREATE TABLE TWEETS(
 );
 
 
-INSERT INTO TWEETS VALUES('hello all','today', 'a');
-INSERT INTO TWEETS VALUES('goodbye all','today', 'a');
-INSERT INTO TWEETS VALUES('b is cool','today', 'b');
-INSERT INTO TWEETS VALUES('b is wack','today', 'c');
-INSERT INTO TWEETS VALUES('c is cool','today', 'c');
-INSERT INTO TWEETS VALUES('hello a','today', 'd');
-INSERT INTO TWEETS VALUES('d is best','today', 'd');
-INSERT INTO TWEETS VALUES('microblogging service similar to twitter','today', 'e');
-INSERT INTO TWEETS VALUES('making them api','today', 'e');
-INSERT INTO TWEETS VALUES('who following me','today', 'e');
-INSERT INTO TWEETS VALUES('what','today', 'f');
+INSERT INTO TWEETS VALUES('2hello all', '2020-10-05 10:37:00', 'a');
+INSERT INTO TWEETS VALUES('8goodbye all', '2020-05-05 23:59:59', 'a');
+INSERT INTO TWEETS VALUES('7b is cool', '2020-09-28 05:58:59', 'b');
+INSERT INTO TWEETS VALUES('9b is wack', '2019-10-05 14:12:35', 'c');
+INSERT INTO TWEETS VALUES('4c is cool', '2020-10-04 17:12:35', 'c');
+INSERT INTO TWEETS VALUES('12my time machine worked', '2059-10-05 14:12:35', 'e');
+INSERT INTO TWEETS VALUES('1hello a', '2020-10-05 14:12:35', 'd');
+INSERT INTO TWEETS VALUES('10d is best', '2014-10-05 14:12:35', 'd');
+INSERT INTO TWEETS VALUES('6microblogging service similar to twitter', '2020-10-01 01:43:16', 'e');
+INSERT INTO TWEETS VALUES('3making them api', '2020-10-04 17:12:36', 'e');
+INSERT INTO TWEETS VALUES('5who following me', '2020-10-04 17:12:34', 'e');
+INSERT INTO TWEETS VALUES('11how i get to 1924', '1924-10-05 14:12:35', 'f');
 
 
 COMMIT;
