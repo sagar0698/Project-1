@@ -95,7 +95,7 @@ def getHomeTimeline():
     conn = sqlite3.connect('data.db')
     conn.row_factory = dict_factory
     cur = conn.cursor()
-    homeTweets = cur.execute('SELECT TWEET, DAY_OF, FK_USER FROM TWEETS INNER JOIN FOLLOW ON FOLLOW.FOLLOWERS = TWEETS.FK_USERS WHERE FOLLOW.FK_USER = ?  LIMIT 25', (Username)).fetchall()
+    homeTweets = cur.execute('SELECT TWEET, DAY_OF, FK_USERS FROM TWEETS INNER JOIN FOLLOW ON FOLLOW.FOLLOWERS = TWEETS.FK_USERS WHERE FOLLOW.FK_USER = ?  LIMIT 25', (Username)).fetchall()
    
     return jsonify(homeTweets)
 
