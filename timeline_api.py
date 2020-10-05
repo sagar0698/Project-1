@@ -63,7 +63,7 @@ def getUserTimeline():
     
     conn = sqlite3.connect('data.db')
     cur = conn.cursor()
-    userTimeline = cur.execute('SELECT * FROM TWEETS WHERE FK_USER = ? LIMIT 25', (Username)).fetchall()
+    userTimeline = cur.execute('SELECT * FROM TWEETS WHERE FK_USER = ? ORDER BY DAY_OF DESC LIMIT 25', (Username)).fetchall()
     conn.commit()
     cur.close()
     conn.close()
@@ -78,7 +78,7 @@ def getPublicTimeline():
     conn = sqlite3.connect('data.db')
     conn.row_factory = dict_factory
     cur = conn.cursor()
-    recentTweets = cur.execute('SELECT * FROM TWEETS LIMIT 25').fetchall()
+    recentTweets = cur.execute('SELECT * FROM TWEETS ORDER BY DAY_OF DESC LIMIT 25').fetchall()
 
     return jsonify(recentTweets)
 
@@ -95,7 +95,7 @@ def getHomeTimeline():
     conn = sqlite3.connect('data.db')
     conn.row_factory = dict_factory
     cur = conn.cursor()
-    homeTweets = cur.execute('SELECT TWEET, DAY_OF, FK_USERS FROM TWEETS INNER JOIN FOLLOW ON FOLLOW.FOLLOWERS = TWEETS.FK_USERS WHERE FOLLOW.FK_USER = ?  LIMIT 25', (Username)).fetchall()
+    homeTweets = cur.execute('SELECT TWEET, DAY_OF, FK_USERS FROM TWEETS INNER JOIN FOLLOW ON FOLLOW.FOLLOWERS = TWEETS.FK_USERS WHERE FOLLOW.FK_USER = ? ORDER BY DAY_OF DESC LIMIT 25', (Username)).fetchall()
    
     return jsonify(homeTweets)
 
