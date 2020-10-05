@@ -1,4 +1,3 @@
---$ sqlite3 data.db .dump > schema.sql
 PRAGMA foreign_keys=ON;
 BEGIN TRANSACTION;
 
