@@ -54,14 +54,33 @@ def home():
 <p>Users microservice</p>'''
 
 
+#outputs all currently registered users
+
+
 @app.route('/users/all', methods=['GET'])
 def api_all():
     conn = sqlite3.connect('data.db')
     conn.row_factory = dict_factory
     cur = conn.cursor()
-    all_users = cur.execute('SELECT * FROM USERS;').fetchall()
+    all_users = cur.execute('SELECT * FROM USERS').fetchall()
 
     return jsonify(all_users)
+
+
+#outputs who a user is following
+
+
+@app.route('/following', methods=['GET'])
+def follow_all():
+    userInfo = request.get_json()
+    username = userInfo.get('username')
+   
+    conn = sqlite3.connect('data.db')
+    conn.row_factory = dict_factory
+    cur = conn.cursor()
+    follow_users = cur.execute('SELECT * FROM FOLLOW WHERE FK_USER =?', (username)).fetchall()
+
+    return jsonify(follow_users)
 
 
 #●	createUser(username, email, password)
