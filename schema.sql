@@ -16,13 +16,13 @@ CREATE TABLE USERS(
 );
 
 
-/* Create few records in this table */
-INSERT INTO USERS VALUES('a', 'a@a.com', 'a');
-INSERT INTO USERS VALUES('b', 'b@b.com', 'b');
-INSERT INTO USERS VALUES('c', 'c@c.com', 'c');
-INSERT INTO USERS VALUES('d', 'd@d.com', 'd');
-INSERT INTO USERS VALUES('e', 'e@e.com', 'e');
-INSERT INTO USERS VALUES('f', 'f@f.com', 'f');
+/* Create few users in this table */
+INSERT INTO USERS VALUES('a', 'a@a.com', 'pbkdf2:sha256:150000$FAKnujDH$b8d780c1fcbc4eaa5e9d9f9bc9e1046100bb22e04cc58d05c0b9a53746ec4942');
+INSERT INTO USERS VALUES('b', 'b@b.com', 'pbkdf2:sha256:150000$CZP4YD51$e8016b6bfacf95266944f500946392810b1669d6cd4bc5d5f13e0f5bf7c779d2');
+INSERT INTO USERS VALUES('c', 'c@c.com', 'pbkdf2:sha256:150000$dodjKvIe$950968c0302575bff1936f9a49a14fb194a224e41d9b7a6a426ac22ef9ac85de');
+INSERT INTO USERS VALUES('d', 'd@d.com', 'pbkdf2:sha256:150000$7H0LmQlj$351c9b0a097bf1ed0763e6e94c032bb65914b0b6c3604e4130323698bd360184');
+INSERT INTO USERS VALUES('e', 'e@e.com', 'pbkdf2:sha256:150000$LpuqQyiz$6448a105414f1e53859dbca7121475fb831eb652fa19bd21626020d3eef3c050');
+INSERT INTO USERS VALUES('f', 'f@f.com', 'pbkdf2:sha256:150000$uzdwJVE1$f3f1e55ab13c2ea4d246f6a751bbb4a91dec477789c814f95b9747cfaf1d9880');
 
 
 /* Create a table called FOLLOW */
@@ -33,7 +33,7 @@ CREATE TABLE FOLLOW(
 );
 
 
-/* Create few records in this table */
+/* Create few follows in this table */
 INSERT INTO FOLLOW VALUES('b', 'a');
 INSERT INTO FOLLOW VALUES('c', 'a');
 INSERT INTO FOLLOW VALUES('d','a');
@@ -52,7 +52,7 @@ CREATE TABLE TWEETS(
     FOREIGN KEY(FK_USERS) REFERENCES USERS(PK_USERNAME)
 );
 
-
+/* Create few tweets in this table */
 INSERT INTO TWEETS VALUES('2hello all', '2020-10-05 10:37:00', 'a');
 INSERT INTO TWEETS VALUES('8goodbye all', '2020-05-05 23:59:59', 'a');
 INSERT INTO TWEETS VALUES('7b is cool', '2020-09-28 05:58:59', 'b');
