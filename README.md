@@ -25,5 +25,5 @@ See the [Installation Instructions in install.md](install.md)
 
 See the [Tuffix VM Build Process in instructions.md](instructions.md.md)
 
-##REST API Definition
+## REST API Definition
 See the [REST API Definitions in rest-api-defs.md](rest-api-defs.md)
