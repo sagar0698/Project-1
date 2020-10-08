@@ -1,4 +1,3 @@
---$ sqlite3 data.db .dump > schema.sql
 PRAGMA foreign_keys=ON;
 BEGIN TRANSACTION;
 
@@ -16,7 +15,7 @@ CREATE TABLE USERS(
 );
 
 
-/* Create few users in this table */
+/* Create few records in this table */
 INSERT INTO USERS VALUES('a', 'a@a.com', 'pbkdf2:sha256:150000$FAKnujDH$b8d780c1fcbc4eaa5e9d9f9bc9e1046100bb22e04cc58d05c0b9a53746ec4942');
 INSERT INTO USERS VALUES('b', 'b@b.com', 'pbkdf2:sha256:150000$CZP4YD51$e8016b6bfacf95266944f500946392810b1669d6cd4bc5d5f13e0f5bf7c779d2');
 INSERT INTO USERS VALUES('c', 'c@c.com', 'pbkdf2:sha256:150000$dodjKvIe$950968c0302575bff1936f9a49a14fb194a224e41d9b7a6a426ac22ef9ac85de');
@@ -33,7 +32,7 @@ CREATE TABLE FOLLOW(
 );
 
 
-/* Create few follows in this table */
+/* Create few records in this table */
 INSERT INTO FOLLOW VALUES('b', 'a');
 INSERT INTO FOLLOW VALUES('c', 'a');
 INSERT INTO FOLLOW VALUES('d','a');
@@ -52,7 +51,7 @@ CREATE TABLE TWEETS(
     FOREIGN KEY(FK_USERS) REFERENCES USERS(PK_USERNAME)
 );
 
-/* Create few tweets in this table */
+
 INSERT INTO TWEETS VALUES('2hello all', '2020-10-05 10:37:00', 'a');
 INSERT INTO TWEETS VALUES('8goodbye all', '2020-05-05 23:59:59', 'a');
 INSERT INTO TWEETS VALUES('7b is cool', '2020-09-28 05:58:59', 'b');
