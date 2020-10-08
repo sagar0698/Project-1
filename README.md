@@ -1,11 +1,29 @@
-# cpsc-449
+# cpsc-449 Project 2: Microblog Microservices
+Jose Alvarado, Sagar Joshi, Luan Nguyen
 
 
-## User
-method = Post
-- remove Follower
-- add Follower
-- post Tweet
+## Overview
+This project consists of two separate Flask applications connected to a single SQLite Version 3 database.
+The major components of this project are
 
-method = Get
-- get Timeline
+* The Python source code for each microservice (user_api.py, timeline_api.py)
+* Procfile definitions for each service
+* A SQL schema for the database
+* HTTPie
+* Foreman
+* Flask
+* Werkzeug
+* Sqlite3
+
+
+
+## Installation & Hardware Requirements
+
+See the [Installation Instructions in install.md](install.md)
+
+## Using and Testing the Microblog Service
+
+See the [Tuffix VM Build Process in instructions.md](instructions.md.md)
+
+##REST API Definition
+See the [REST API Definitions in rest-api-defs.md](rest-api-defs.md)
