@@ -54,27 +54,33 @@ def home():
 <p>Users microservice</p>'''
 
 
+#outputs all currently registered users
+
+
 @app.route('/users/all', methods=['GET'])
 def api_all():
     conn = sqlite3.connect('data.db')
     conn.row_factory = dict_factory
     cur = conn.cursor()
-    all_users = cur.execute('SELECT * FROM USERS;').fetchall()
+    all_users = cur.execute('SELECT * FROM USERS').fetchall()
 
     return jsonify(all_users)
+
+
+#outputs who a user is following
 
 
 @app.route('/following', methods=['GET'])
 def follow_all():
     userInfo = request.get_json()
-    Username = userInfo.get('username')
-    
+    username = userInfo.get('username')
+   
     conn = sqlite3.connect('data.db')
     conn.row_factory = dict_factory
     cur = conn.cursor()
-    all_users = cur.execute('SELECT * FROM FOLLOW WHERE FK_USER =?', [Username]).fetchall()
+    follow_users = cur.execute('SELECT * FROM FOLLOW WHERE FK_USER =?', (username)).fetchall()
 
-    return jsonify(all_users)
+    return jsonify(follow_users)
 
 
 #●	createUser(username, email, password)
@@ -95,6 +101,7 @@ def createUser():
     conn.commit()
     cur.close()
     conn.close()
+
     return jsonify(message=Username + ' was added successfully.'), 201 
 
 
@@ -110,13 +117,12 @@ def authenticateUser():
     
     conn = sqlite3.connect('data.db')
     cur = conn.cursor()
-    userPass = cur.execute('SELECT PASSWORD FROM USERS WHERE PK_USERNAME = ?', [Username]).fetchall()
+    userPass = cur.execute('SELECT PASSWORD FROM USERS WHERE PK_USERNAME = ?', [Username]).fetchone()[0]
 
-    try:
-        check_password_hash(userPass, password)
+    if check_password_hash(userPass, password):
         return jsonify(message=Username + ' was authenticated successfully.'), 201 
-    except:
-        return jsonify(message=Username + 'password incorrect'), 401
+    else:
+        return jsonify(message=Username + ' password incorrect' ), 401 
 
 
 #●	addFollower(username, usernameToFollow)
@@ -126,37 +132,37 @@ def authenticateUser():
 @app.route('/follow', methods=['PUT'])
 def addFollower():
     userInfo = request.get_json()
-    Username = userInfo.get('username')
+    username = userInfo.get('username')
     usernameToFollow = userInfo.get('usernameToFollow')
     
     conn = sqlite3.connect('data.db')
     cur = conn.cursor()
-    cur.execute('INSERT INTO FOLLOW (FK_USER, FOLLOWERS) VALUES(?,?)',(Username, usernameToFollow))
+    cur.execute('INSERT INTO FOLLOW (FOLLOWERS, FK_USER) VALUES(?,?)',(usernameToFollow, username))
     conn.commit()
     cur.close()
     conn.close()
  
-    return jsonify(message=Username + ' is now following ' + usernameToFollow), 200
+    return jsonify(message=username + ' is now following ' + usernameToFollow), 200
 
 
 #●	removeFollower(username, usernameToRemove)
 #Stop following a user.
 
 
-@app.route('/unfollow', methods=['DELETE'])
+@app.route('/unfollow', methods=['POST'])
 def removeFollower():
     userInfo = request.get_json()
-    Username = userInfo.get('username')
+    username = userInfo.get('username')
     usernameToRemove = userInfo.get('usernameToRemove')
     
     conn = sqlite3.connect('data.db')
     cur = conn.cursor()
-    cur.execute('DELETE FROM FOLLOW WHERE FK_USER = ? AND FOLLOWERS = ?',(Username, usernameToRemove))
+    cur.execute('DELETE FROM FOLLOW WHERE FK_USER = ? AND FOLLOWERS = ?',(username, usernameToRemove))
     conn.commit()
     cur.close()
     conn.close()
     
-    return jsonify(message=Username + ' is now unfollowing ' + usernameToRemove), 200
+    return jsonify(message=username + ' is now unfollowing ' + usernameToRemove), 200
 
 
 @app.errorhandler(404)
