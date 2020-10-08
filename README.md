@@ -26,4 +26,4 @@ See the [Installation Instructions in install.md](install.md)
 See the [Instructions in Microblog Instructions.pdf](Microblog%20Instructions.pdf)
 
 ## REST API Definition
-See the [REST API Definitions in Rest API-Defintion.pdf](Rest$20API%20Defintion.pdf)
+See the [REST API Definitions in Rest API-Defintion.pdf](Rest%20API%20Definition.pdf)
