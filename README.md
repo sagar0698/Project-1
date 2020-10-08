@@ -23,7 +23,7 @@ See the [Installation Instructions in install.md](install.md)
 
 ## Using and Testing the Microblog Service
 
-See the [Instructions in Microblog Instructions.pdf](install.md)
+See the [Instructions in Microblog Instructions.pdf](Microblog%20Instructions.pdf)
 
 ## REST API Definition
 See the [REST API Definitions in rest-api-defs.md](rest-api-defs.md)
