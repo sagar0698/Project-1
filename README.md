@@ -23,7 +23,7 @@ See the [Installation Instructions in install.md](install.md)
 
 ## Using and Testing the Microblog Service
 
-See the [Tuffix VM Build Process in instructions.md](instructions.md.md)
+See the [Microblog Instructions.pdf in instructions.md](instructions.md)
 
 ## REST API Definition
 See the [REST API Definitions in rest-api-defs.md](rest-api-defs.md)
