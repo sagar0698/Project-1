@@ -17,13 +17,13 @@ The major components of this project are
 
 
 
-## Installation & Hardware Requirements
+## Installation & Hardware Requirements (Please Evaluate for Project)
 
 See the [Installation Instructions in install.md](install.md)
 
-## Using and Testing the Microblog Service
+## Using and Testing the Microblog Service (Please Evaluate for Project)
 
 See the [Instructions in Microblog Instructions.pdf](Microblog%20Instructions.pdf)
 
-## REST API Definition
+## REST API Definition (Please Evaluate for Project)
 See the [REST API Definitions in Rest API-Defintion.pdf](Rest%20API%20Definition.pdf)

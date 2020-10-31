@@ -1,10 +1,6 @@
-#CPSC 449 Project 2
-#MicroBlogging service
-#Jose Alvarado, Luan Nguyen, Sagar Joshi
-
 import flask
 from flask import request, jsonify, g, current_app
-import sqlite3
+import sqlite3 
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -32,7 +28,6 @@ def get_db():
         g.db.row_factory = dict_factory
     return g.db
 
-# initialize database
 
 @app.cli.command('init')
 def init_db():
@@ -79,7 +74,7 @@ def api_all():
 def follow_all():
     userInfo = request.get_json()
     username = userInfo.get('username')
-
+   
     conn = sqlite3.connect('data.db')
     conn.row_factory = dict_factory
     cur = conn.cursor()
@@ -88,7 +83,7 @@ def follow_all():
     return jsonify(follow_users)
 
 
-#createUser(username, email, password)
+#●	createUser(username, email, password)
 #Registers a new user account.
 
 
@@ -99,7 +94,7 @@ def createUser():
     Email = userInfo.get('email')
     password = userInfo.get('password')
     hashed_password = generate_password_hash(password)
-
+    
     conn = sqlite3.connect('data.db')
     cur = conn.cursor()
     cur.execute('INSERT INTO USERS VALUES(?,?,?)', (Username, Email, hashed_password))
@@ -107,10 +102,10 @@ def createUser():
     cur.close()
     conn.close()
 
-    return jsonify(message=Username + ' was added successfully.'), 201
+    return jsonify(message=Username + ' was added successfully.'), 201 
 
 
-#authenticateUser(username, password)
+#●	authenticateUser(username, password)
 #Returns true if the supplied password matches the hashed password stored for that username in the database.
 
 
@@ -119,18 +114,18 @@ def authenticateUser():
     userInfo = request.get_json()
     Username = userInfo.get('username')
     password = userInfo.get('password')
-
+    
     conn = sqlite3.connect('data.db')
     cur = conn.cursor()
     userPass = cur.execute('SELECT PASSWORD FROM USERS WHERE PK_USERNAME = ?', [Username]).fetchone()[0]
 
     if check_password_hash(userPass, password):
-        return jsonify(message=Username + ' was authenticated successfully.'), 201
+        return jsonify(message=Username + ' was authenticated successfully.'), 201 
     else:
-        return jsonify(message=Username + ' password incorrect' ), 401
+        return jsonify(message=Username + ' password incorrect' ), 401 
 
 
-#addFollower(username, usernameToFollow)
+#●	addFollower(username, usernameToFollow)
 #Start following a new user.
 
 
@@ -139,18 +134,18 @@ def addFollower():
     userInfo = request.get_json()
     username = userInfo.get('username')
     usernameToFollow = userInfo.get('usernameToFollow')
-
+    
     conn = sqlite3.connect('data.db')
     cur = conn.cursor()
     cur.execute('INSERT INTO FOLLOW (FOLLOWERS, FK_USER) VALUES(?,?)',(usernameToFollow, username))
     conn.commit()
     cur.close()
     conn.close()
-
+ 
     return jsonify(message=username + ' is now following ' + usernameToFollow), 200
 
 
-#removeFollower(username, usernameToRemove)
+#●	removeFollower(username, usernameToRemove)
 #Stop following a user.
 
 
@@ -159,17 +154,16 @@ def removeFollower():
     userInfo = request.get_json()
     username = userInfo.get('username')
     usernameToRemove = userInfo.get('usernameToRemove')
-
+    
     conn = sqlite3.connect('data.db')
     cur = conn.cursor()
     cur.execute('DELETE FROM FOLLOW WHERE FK_USER = ? AND FOLLOWERS = ?',(username, usernameToRemove))
     conn.commit()
     cur.close()
     conn.close()
-
+    
     return jsonify(message=username + ' is now unfollowing ' + usernameToRemove), 200
 
-# 404 error if page not found
 
 @app.errorhandler(404)
 def page_not_found(e):
